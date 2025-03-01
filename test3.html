@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow Images</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .slideshow-wrapper {
+    width: 80%;
+    max-width: 800px;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slideshow-content img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .slideshow-content img.active {
+    opacity: 1;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    z-index: 1;
+  }
+
+  .arrow.left {
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .arrow.right {
+    right: 10px;
+    transform: translateY(-50%);
+  }
+</style>
+</head>
+<body>
+
+<div class="slideshow-wrapper">
+  <div class="slideshow-content">
+    <img src="https://i.pinimg.com/564x/c6/c6/c1/c6c6c1e1e43689d2d3cb900288939c75.jpg" alt="Picture 1" class="active">
+    <img src="https://i.pinimg.com/564x/b3/95/4b/b3954bc171657154201afe894befb4b1.jpg" alt="Picture 2">
+    <img src="https://i.pinimg.com/564x/c3/a2/d3/c3a2d35202595b3a7321ce90706da057.jpg" alt="Picture 3">
+  </div>
+  <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+  <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slideshow-content img');
+  
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) {
+        slide.classList.add('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+  }
+
+  function prevSlide() {
+    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+    showSlide(slideIndex);
+  }
+
+  // Initialize the first slide
+  showSlide(slideIndex);
+</script>
+
+</body>
+</html>

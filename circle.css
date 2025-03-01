@@ -1,0 +1,9 @@
+/* CSS for rotating the image */
+.rotate {
+    display: inline-block;
+    transition: transform 1s ease-in-out; /* Smooth transition */
+}
+
+.rotate:hover {
+    transform: rotate(360deg); /* Rotate 360 degrees on hover */
+}

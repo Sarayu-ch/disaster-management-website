@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Integrated Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            position: relative;
+        }
+        header img {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            width: 300px;
+            height: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            position: relative;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .nested-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .nested-dropdown-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .nested-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .nested-dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown-content .nested-dropdown:hover .nested-dropdown-content {
+            display: block;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blinking {
+            animation: blink 1s infinite;
+            background-color: rgb(255, 38, 0);
+        }
+        .forecast-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px auto;
+        }
+        .alert-heading {
+            font-size: 2em;
+            color: #721c24;
+            animation: blink 1s step-start infinite;
+            margin-bottom: 20px;
+        }
+        .scrolling-text-container {
+            background: #b35d64;
+            border: 1px solid #721c24;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 50px;
+        }
+        .scrolling-text {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            font-size: 1em;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        select {
+            font-size: 1em;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin: 20px auto;
+        }
+        .scroll-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .scroll-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .scroll-container li {
+            margin: 10px 0;
+        }
+        .scroll-container a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .scroll-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="crisis logo final.jpg" alt="Crisis Connect Logo"> 
+        <font face="Times New Roman" size="10">CRISIS CONNECT</font> <br> 
+        <font face="Arial" size="5">Stay informed Stay safe</font>
+    </header>
+    
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="http://127.0.0.1:5500/report.html">REPORT</a>
+        <div class="dropdown">
+            <a href="#">HELP</a>
+            <div class="dropdown-content">
+                <a href="http://127.0.0.1:5500/shelter.html">SHELTER</a>
+                <a href="http://127.0.0.1:5500/facilities.html">FACILITIES</a>
+            </div>
+        </div>
+        <a href="http://127.0.0.1:5500/guide.html">GUIDE</a>
+        <a href="http://127.0.0.1:5500/contact.html">CONTACT INFO</a>
+    </nav>
+   
+    <!-- Disaster Forecast Alert Section -->
+    <div class="forecast-container">
+        <div class="alert-heading">FORECAST</div>
+        <select id="city-select">
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="New York">New York</option>
+            <option value="London">London</option>
+            <option value="Tokyo">Tokyo</option>
+            <!-- Add more cities as needed -->
+        </select>
+        <div class="scrolling-text-container">
+            <div id="scrolling-text" class="scrolling-text">
+                Loading disaster forecast data...
+            </div>
+        </div>
+    </div>
+
+    <!-- Disaster Management Information Section -->
+    <div class="container">
+        <h1>Disaster Management</h1>
+        <p>
+            Disasters strike unpredictably and can be deeply devastating, testing our endurance and humanity. From natural calamities to man-made crises, their impact is profound. Yet, our greatest asset in these times is our collective strength.
+        </p>
+        <p>
+            Effective disaster management goes beyond immediate response. It involves preparation, rapid response, and resilient recovery. Preparation means planning ahead, educating ourselves, and building robust infrastructure. Response showcases our humanity, with responders and volunteers coming together to offer support. Recovery is about more than rebuilding; it’s about healing and emerging stronger.
+        </p>
+        <p>
+            Our shared responsibility in disaster management is vital. By working together—governments, organizations, and individuals—we protect lives, reduce suffering, and build a resilient future. In times of crisis, let’s unite with compassion and unwavering spirit, knowing that our collective efforts will see us through.
+        </p>
+    </div>
+    
+    <!-- Scrollable URL List Section -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scrollable URL List</title>
+        <link rel="stylesheet" href="styl.css">
+    </head>
+    <div class="scroll-container">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/vol.html" target="_blank">VOLUNTEER</a></li>
+            <li><a href="http://127.0.0.1:5500/fundraise.html#" target="_blank">FUNDRAISER</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const apiKey = '18c167ba5b1ce808b0e9c5c4a1b4df87'; // OpenWeather API key
+
+        async function fetchDisasterForecast(city) {
+            try {
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                
+                const forecast = `
+                    <div>
+                        <strong>${data.name}, ${data.sys.country}</strong> - 
+                        ${data.weather[0].description} - 
+                        ${Math.round(data.main.temp)}°C
+                    </div>
+                `;
+                document.getElementById('scrolling-text').innerHTML = forecast;
+            } catch (error) {
+                document.getElementById('scrolling-text').innerHTML = 'Unable to load weather data.';
+                console.error('Error fetching weather data:', error);
+            }
+        }
+        
+        document.getElementById('city-select').addEventListener('change', (event) => {
+            fetchDisasterForecast(event.target.value);
+        });
+
+        // Fetch initial data for default city
+        fetchDisasterForecast(document.getElementById('city-select').value);
+    </script>
+
+</body>
+</html>

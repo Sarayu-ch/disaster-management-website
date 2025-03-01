@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Forecast Alert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .alert-heading {
+            font-size: 2em;
+            color: #721c24;
+            animation: blink 1s step-start infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .scrolling-text-container {
+            background: #b35d64;
+            border: 1px solid #721c24;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 50px;
+        }
+
+        .scrolling-text {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            font-size: 1em;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        select {
+            font-size: 1em;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="alert-heading">ALERT</div>
+        <select id="city-select">
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="New York">New York</option>
+            <option value="London">London</option>
+            <option value="Tokyo">Tokyo</option>
+            <!-- Add more cities as needed -->
+        </select>
+        <div class="scrolling-text-container">
+            <div id="scrolling-text" class="scrolling-text">
+                Loading disaster forecast data...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = '18c167ba5b1ce808b0e9c5c4a1b4df87'; // OpenWeather API key
+
+        async function fetchDisasterForecast(city) {
+            try {
+                const apiUrl = https//api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                
+                const forecast = `
+                    <div>
+                        <strong>${data.name}, ${data.sys.country}</strong> - 
+                        ${data.weather[0].description} - 
+                        ${Math.round(data.main.temp)}°C
+                    </div>
+                `;
+                document.getElementById('scrolling-text').innerHTML = forecast;
+            } catch (error) {
+                document.getElementById('scrolling-text').innerHTML = 'Unable to load weather data.';
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+        document.getElementById('city-select').addEventListener('change', (event) => {
+            fetchDisasterForecast(event.target.value);
+        });
+
+        // Fetch initial data for default city
+        fetchDisasterForecast(document.getElementById('city-select').value);
+    </script>
+</body>
+</html>

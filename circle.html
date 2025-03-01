@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Rotation</title>
+    <style>
+        .rotate {
+            display: inline-block;
+            width: 100px; /* Set a fixed width */
+            height: 100px; /* Set a fixed height */
+            transition: transform 1s ease-in-out; /* Smooth transition */
+        }
+
+        .rotate:hover {
+            transform: rotate(360deg); /* Rotate 360 degrees on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="circle.jpg" alt="Crisis Connect Logo" class="rotate"> 
+    </header>
+</body>
+</html>

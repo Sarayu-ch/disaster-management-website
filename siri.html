@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="header">
+        <a href="sarayu.html" class="header-link">Sign Up</a>
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+<style>
+    /* Existing styles */
+
+/* New styles for the header link */
+.header {
+    position: relative;
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+}
+
+.header-link {
+    color: #007BFF; /* Change this color as needed */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+}
+
+</style>
+</html>
